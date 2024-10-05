@@ -6,15 +6,20 @@ var choice = Console.ReadLine()!.ToLower();
 
 
 var icons = IconsManipulator.Instance.Icons;
-var DesktopIcons = await DesktopIcon.ToHighLevelIcons([.. icons]);
 
 if (choice == "c")
 {
+    var DesktopIcons = await DesktopIcon.ToHighLevelIcons([.. icons]);
+
     new ClusterIcons().Apply(DesktopIcons);
 }
 else if (choice == "s")
 {
-    await new SortIcons().Apply(DesktopIcons);
+    Console.Write("Enter the number of folders you want to create: ");
+    var k = int.Parse(Console.ReadLine()!);
+
+    var DesktopIcons = await DesktopIcon.ToHighLevelIcons([.. icons], k);
+    await new SortIcons().Apply(DesktopIcons,k);
 }
 else
 {

@@ -6,7 +6,7 @@ using System.Diagnostics;
 public record DesktopIcon(IconItem Icon, string Description, float[] Embedding)
 {
     public int Cluster { get; set; }
-    public static async Task<List<DesktopIcon>> ToHighLevelIcons(List<IconItem> icons)
+    public static async Task<List<DesktopIcon>> ToHighLevelIcons(List<IconItem> icons, int k = -1)
     {
         List<DesktopIcon> desktopIcons = [];
 
@@ -14,6 +14,8 @@ public record DesktopIcon(IconItem Icon, string Description, float[] Embedding)
         conv.AppendSystemMessage(
             $"""
             I will now ask you to describe what each shortcut on my desktop is used for or what it is about.
+
+            {(k != -1 ? $"ONLY RESPOND WITH {k} DISCRETE CATAGORY THE APP FALLS TO AND NOTHING ELSE":"")}
 
             shortcut on the desktop:
             {string.Join("\n", icons.Select(x => $"{x.Name} ({(x.IsFile ? "File" : "Folder")})"))}
