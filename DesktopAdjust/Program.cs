@@ -10,7 +10,7 @@ var DesktopIcons = await DesktopIcon.ToHighLevelIcons([.. icons]);
 
 if (choice == "c")
 {
-    await new ClusterIcons().Apply(DesktopIcons);
+    new ClusterIcons().Apply(DesktopIcons);
 }
 else if (choice == "s")
 {

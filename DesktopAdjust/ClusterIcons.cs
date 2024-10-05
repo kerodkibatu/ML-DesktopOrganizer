@@ -5,7 +5,7 @@ using System.Drawing;
 
 class ClusterIcons
 {
-    public async Task Apply(List<DesktopIcon> DesktopIcons)
+    public void Apply(List<DesktopIcon> DesktopIcons)
     {
         var embeddings = DesktopIcons.Select(x => x.Embedding.Select(y => (double)y).ToArray()).ToArray();
 

@@ -15,9 +15,8 @@ public record DesktopIcon(IconItem Icon, string Description, float[] Embedding)
             $"""
             I will now ask you to describe what each shortcut on my desktop is used for or what it is about.
 
-
             shortcut on the desktop:
-            {string.Join("\n", icons.Select(x => x.Name))}
+            {string.Join("\n", icons.Select(x => $"{x.Name} ({(x.IsFile ? "File" : "Folder")})"))}
             """);
 
         using (var p = new ProgressBar(icons.Count, "Processing desktop files...", new ProgressBarOptions()
